@@ -1,4 +1,4 @@
-# Basic-Cryptosystem
+# Theorems
 Summary on basic asymmetric cryptosystems
 - Basic Math
   - Euclid's Theorem
