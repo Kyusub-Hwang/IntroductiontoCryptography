@@ -18,4 +18,5 @@ def generatePrime(min, max):
     n = random.choice(primes)
     return n
 
-#
+# Find coprime number; 2<e<pi(n), gcd(e, pi(n)) == 1  ;;
+
