@@ -1,6 +1,6 @@
 import random
 import math
-import time
+import argparse
 
 # Determine prime number
 def isPrime(num):
@@ -35,7 +35,7 @@ def generatePrivateKey(e, phi):
             return d
     raise ValueError("Failed to generate private key")
 
-if __name__ == '__main__':
+def main(message):
     # Generate p,q; p !== q
     p, q = generatePrime(100, 200), generatePrime(200, 300)
 
@@ -45,14 +45,15 @@ if __name__ == '__main__':
     publicKey = generatepublicKey(phi)
     privateKey = generatePrivateKey(publicKey, phi)
 
+    print('######### SETTING UP ENCRYPTION #########')
     print(f'p: {p}')
     print(f'q: {q}')
     print(f'n: {n}')
     print(f'phi of n: {phi}')
     print(f'public Key: {publicKey}')
-    print(f'private Key: {privateKey}')
+    print(f'private Key: {privateKey}\n')
 
-    message = "Hello World"
+    print('######### MESSAGE ENCRYPTION & DECRYPTION #########')
     print(f'message: {message}')
     # Message Encoding; (m ^ e) mod n = c
     messageEncoded = [ord(ch) for ch in message]
@@ -61,13 +62,12 @@ if __name__ == '__main__':
 
     messageDecoded = [pow(ch, privateKey, n) for ch in ciphertext]
     message = "".join(chr(ch) for ch in messageDecoded)
-    print(f'message: {message}')
+    print(f'message: {message}\n')
+    print('######### DECRYPTION SUCCESSFUL #########\n')
 
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description = 'Input message for encryption')
+    parser.add_argument('message', help='Please type message')
+    args = parser.parse_args()
 
-
-
-
-
-
-
-
+    main(args.message)
